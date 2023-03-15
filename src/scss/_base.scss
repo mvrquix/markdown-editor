@@ -1,0 +1,37 @@
+:root {
+	--color-grey-dark-1: #151619;
+	--color-grey-dark-2: #1d1f22;
+	--color-grey-dark-3: #2b2d31;
+	--color-grey-dark-4: #35393f;
+
+	--color-grey-light-1: #5a6069;
+	--color-grey-light-2: #7c8187;
+	--color-grey-light-3: #c1c4cb;
+	--color-grey-light-4: #e4e4e4;
+	--color-grey-light-5: #f5f5f5;
+
+	--color-orange-dark: #e46643;
+	--color-orange-light: #f39765;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+*,
+*::after,
+*::before {
+	box-sizing: inherit;
+}
+
+html {
+	box-sizing: border-box;
+	font-size: 62.5%; // 1 rem = 10px; 10px/16px = 62.5%
+}
+
+body {
+	min-height: 100vh;
+	font-weight: 400;
+	line-height: 2.4rem;
+}

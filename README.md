@@ -56,8 +56,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ### Built with
 
-- Semantic HTML5 markup
-- CSS custom properties
 - Flexbox
 - Desktop-first workflow
 - [React](https://reactjs.org/) - JS library
@@ -66,34 +64,46 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
-
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-
-```css
-.proud-of-this-css {
-	color: papayawhip;
-}
-```
+Created a custom hook to retrieve window dimensions for responsive design:
 
 ```js
-const proudOfThisFunc = () => {
-	console.log('🎉')
+const useWindowDimension = () => {
+	const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions())
+
+	useEffect(() => {
+		const handleResize = () => {
+			setWindowDimensions(getWindowDimensions())
+		}
+
+		window.addEventListener('resize', handleResize)
+		return () => window.removeEventListener('resize', handleResize)
+	}, [])
+
+	return windowDimensions
 }
+```
+
+Used the useEffect hook to custoomize w/ third party components on the DOM:
+
+```js
+useEffect(() => {
+	const mdInput = document.querySelector('.w-md-editor-text-input')
+	if (theme === 'dark') {
+		mdInput.classList.add('dark')
+	} else {
+		mdInput.classList.remove('dark')
+	}
+}, [theme])
 ```
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+The next step to this project would be to create a server application to persist data with endpoints for the frontend to network with. With that in place
+it would make sense to centralize state management on the frontend in a redux store. I would also focus on my flexbox implementation. I know there are places where I can optimize the flex layout. For example, the "Save Changes" button in the top-bar is not very responsive. If I were to set up a CI/CD pipeline, I'd write up unit tests for each component and redux store action.
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- [W3Schools](https://www.w3schools.com/howto/howto_css_switch.asp) - This helped me implement the theme switch button.
 
 ## Author
 

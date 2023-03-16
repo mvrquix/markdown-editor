@@ -11,15 +11,19 @@
 }
 
 .side-bar.active {
-	display: unset;
+	display: flex;
+	flex-direction: column;
 	transform: translateX(0%);
 }
 
 .container {
+	width: 100%;
 	min-height: 100vh;
 	padding-bottom: 4rem;
-	width: 100%;
-	transition: all 0.2s;
+
+	@include respond(xs-phone) {
+		width: unset;
+	}
 }
 
 .top-bar {
@@ -38,11 +42,20 @@
 }
 
 .content {
+	position: relative;
 	display: flex;
 
 	.markdown-container {
 		width: 50%;
 		border-right: 1px solid #e4e4e4;
+
+		@include respond(phone) {
+			width: 100%;
+		}
+	}
+
+	.markdown-container.dark {
+		border-right: 1px solid var(--color-grey-light-1);
 	}
 
 	.preview-container {

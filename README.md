@@ -42,7 +42,7 @@ In the project directory, you can run:
 
 to download dependencies.
 
-### `npm run`
+### `npm run start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -62,6 +62,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 - Desktop-first workflow
 - [React](https://reactjs.org/) - JS library
 - [SASS](https://www.npmjs.com/package/sass) - For styles
+- [@uiw/react-md-editor](https://github.com/uiwjs/react-md-editor) - For markdown editor & preview
 
 ### What I learned
 

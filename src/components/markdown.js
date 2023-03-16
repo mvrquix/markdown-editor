@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import MDEditor from '@uiw/react-md-editor'
 import rehypeSanitize from 'rehype-sanitize'
 
-const MarkdownEditor = ({ markdownValue, handleEditDocument, showPreview }) => {
+const MarkdownEditor = ({ markdownValue, handleEditDocument, showPreview, theme }) => {
 	const markdownRef = useRef(null)
 
 	useEffect(() => {
@@ -14,12 +14,21 @@ const MarkdownEditor = ({ markdownValue, handleEditDocument, showPreview }) => {
 		}
 	}, [])
 
+	useEffect(() => {
+		const mdInput = document.querySelector('.w-md-editor-text-input')
+		if (theme === 'dark') {
+			mdInput.classList.add('dark')
+		} else {
+			mdInput.classList.remove('dark')
+		}
+	}, [theme])
+
 	const style = {
 		display: showPreview ? 'none' : 'block',
 	}
 
 	return (
-		<div className='markdown-container' style={style}>
+		<div className={`markdown-container ${theme}`} style={style}>
 			<h1>Markdown</h1>
 			<div className='markdown-editor'>
 				<MDEditor

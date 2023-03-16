@@ -1,7 +1,15 @@
-import { FileIcon } from './icons'
+import { FileIcon, DarkModeIcon, DarkModeActiveIcon, LightModeIcon, LightModeActiveIcon } from './icons'
 import { formatCreateDate } from '../utils'
 
-const Sidebar = ({ activeDocument, handleUpdateActiveDocument, documents, handleCreateNewDocument, showMenu }) => {
+const Sidebar = ({
+	activeDocument,
+	handleUpdateActiveDocument,
+	documents,
+	handleCreateNewDocument,
+	showMenu,
+	theme,
+	handleThemeChange,
+}) => {
 	return (
 		<div className={`side-bar ${showMenu ? 'active' : ''}`}>
 			<h3>My Documents</h3>
@@ -29,6 +37,14 @@ const Sidebar = ({ activeDocument, handleUpdateActiveDocument, documents, handle
 					)
 				})}
 			</ul>
+			<div className='side-bar__theme'>
+				{theme === 'dark' ? <DarkModeActiveIcon /> : <DarkModeIcon />}
+				<label className='side-bar__theme-switch'>
+					<input onChange={handleThemeChange} type='checkbox' defaultChecked={true} />
+					<span className='slider round'></span>
+				</label>
+				{theme === 'light' ? <LightModeActiveIcon /> : <LightModeIcon />}
+			</div>
 		</div>
 	)
 }

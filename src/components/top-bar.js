@@ -44,10 +44,12 @@ const TopBar = ({
 					className='btn save-btn'
 					disabled={!hasChanges}
 					style={{ opacity: hasChanges ? 1 : 0.4 }}>
-					<i className='icon'>
-						<SaveIcon />
-					</i>
-					<span>Save Changes</span>
+					<span>
+						<i className='icon'>
+							<SaveIcon />
+						</i>
+						<span className='save-btn__text'>Save Changes</span>
+					</span>
 				</button>
 			</div>
 			<div

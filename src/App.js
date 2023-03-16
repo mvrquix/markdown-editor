@@ -3,6 +3,10 @@ import Sidebar from './components/side-bar'
 import TopBar from './components/top-bar'
 import MarkdownEditor from './components/markdown'
 import PreviewEditor from './components/preview'
+import { PreviewIcon, PreviewOffIcon } from './components/icons'
+
+const THEME_LIGHT = 'light'
+const THEME_DARK = 'dark'
 
 const data = [
 	{
@@ -28,6 +32,7 @@ function App() {
 	const [markdownValue, setMarkdownValue] = useState(activeDocument.content)
 	const [showPreview, togglePreview] = useState(false)
 	const [hasChanges, toggleHasChanges] = useState(false)
+	const [theme, setTheme] = useState(THEME_LIGHT)
 
 	useEffect(() => {
 		// if all documents are deleted
@@ -85,6 +90,11 @@ function App() {
 		setDocuments(newDocs)
 	}
 
+	const handleThemeChange = (event) => {
+		const { checked } = event.target
+		setTheme(checked ? THEME_LIGHT : THEME_DARK)
+	}
+
 	return (
 		<div className='wrapper'>
 			<Sidebar
@@ -93,8 +103,10 @@ function App() {
 				documents={documents}
 				handleCreateNewDocument={handleCreateNewDocument}
 				showMenu={showMenu}
+				theme={theme}
+				handleThemeChange={handleThemeChange}
 			/>
-			<div className='container'>
+			<div className='container' style={{ backgroundColor: theme === THEME_LIGHT ? '#fff' : '#151619' }}>
 				<TopBar
 					activeDocument={activeDocument}
 					hasChanges={hasChanges}
@@ -104,13 +116,22 @@ function App() {
 					toggleMenu={toggleMenu}
 					handleDeleteDocument={handleDeleteDocument}
 				/>
-				<div className='content'>
+				<div className='content' style={{ backgroundColor: theme === THEME_LIGHT ? '#fff' : '#151619' }}>
 					<MarkdownEditor
 						markdownValue={markdownValue}
 						handleEditDocument={handleEditDocument}
 						showPreview={showPreview}
+						theme={theme}
 					/>
-					<PreviewEditor markdownValue={markdownValue} showPreview={showPreview} togglePreview={togglePreview} />
+					<PreviewEditor
+						markdownValue={markdownValue}
+						showPreview={showPreview}
+						togglePreview={togglePreview}
+						theme={theme}
+					/>
+					<button onClick={() => togglePreview(!showPreview)} className='btn preview-btn'>
+						{showPreview ? <PreviewOffIcon /> : <PreviewIcon />}
+					</button>
 				</div>
 			</div>
 		</div>

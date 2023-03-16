@@ -83,7 +83,7 @@ const useWindowDimension = () => {
 }
 ```
 
-Used the useEffect hook to custoomize w/ third party components on the DOM:
+Used the useEffect hook to customize w/ third party components on the DOM:
 
 ```js
 useEffect(() => {
